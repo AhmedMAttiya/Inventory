@@ -1,0 +1,1678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEE_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EMPLOYEE_TITLE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WORK_PHONE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="ISSUE_ID" />
+          </Key>
+          <Property Name="ISSUE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISSUE_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FIN_YEAR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="REQ_EMPLOYEE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ISSUE_TYPE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FROM_STOCK" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IssueDetails">
+          <Key>
+            <PropertyRef Name="ISSUEDETAILS_ID" />
+          </Key>
+          <Property Name="ISSUEDETAILS_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISSUE_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="REQUESTED_QTY" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="APPROVED_QTY" Type="ntext" Nullable="false" />
+          <Property Name="ISSUED_QTY" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_STATUS" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_UOI" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ITEM_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ITEM_CATEGORY" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_UOI" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_VENDOR" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ITEM_DESCRIPTON" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_Fin_Year">
+          <Key>
+            <PropertyRef Name="FIN_YEAR_ID" />
+          </Key>
+          <Property Name="FIN_YEAR_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIN_YEAR_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FIN_YEAR_START" Type="date" Nullable="false" />
+          <Property Name="FIN_YEAR_END" Type="date" Nullable="false" />
+          <Property Name="FIN_YEAR_STATUS" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Item_Status">
+          <Key>
+            <PropertyRef Name="ITEM_STATUS_ID" />
+          </Key>
+          <Property Name="ITEM_STATUS_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_STATUS_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_Payment_Reason">
+          <Key>
+            <PropertyRef Name="REASON_ID" />
+          </Key>
+          <Property Name="REASON_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REASON_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_Payment_Type">
+          <Key>
+            <PropertyRef Name="PAYMENT_TYPE_ID" />
+          </Key>
+          <Property Name="PAYMENT_TYPE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_Receipt_Type">
+          <Key>
+            <PropertyRef Name="RECEIPT_TYPE_ID" />
+          </Key>
+          <Property Name="RECEIPT_TYPE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RECEIPT_TYPE_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_Stock_Type">
+          <Key>
+            <PropertyRef Name="STOCK_TYPE_ID" />
+          </Key>
+          <Property Name="STOCK_TYPE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STOCK_TYPE_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_UOI">
+          <Key>
+            <PropertyRef Name="UOI_ID" />
+          </Key>
+          <Property Name="UOI_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UOI_NAME_AR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UOI_NAME_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Lkup_User_Roles">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ROLE_DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_DATE" Type="datetime" Nullable="false" />
+          <Property Name="FIN_YEAR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SUPPLIER" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_TYPE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ORDER_PERIOD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RECEIPT_TYPE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="ORDERDETAIL_ID" />
+          </Key>
+          <Property Name="ORDERDETAIL_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PAYMENT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAYMENT_REASON" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_DATE" Type="date" Nullable="false" />
+          <Property Name="FIN_YEAR" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_AMOUNT" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="STOCK_ID" />
+          </Key>
+          <Property Name="STOCK_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STOCK_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="STOCK_TYPE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STOCK_EMPLOYEE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="STOCK_DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StockDetails">
+          <Key>
+            <PropertyRef Name="STOCKDETAIL_ID" />
+          </Key>
+          <Property Name="STOCKDETAIL_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STOCK_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DOC_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="QTY" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_STATUS" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_BUY_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_SELL_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_BUY_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_SELL_PRICE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SUPPLIER_ID" />
+          </Key>
+          <Property Name="SUPPLIER_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUPPLIER_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CONTACT_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CONTACT_TITLE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ADDRESS" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="COUNTRY" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="POSTAL_CODE" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FAX_NUMBER" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NOTES" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="USER_ROLE" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PASSWORD_HINT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACTIVE" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Issue_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="REQ_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Lkup_Fin_Year">
+          <End Role="Lkup_Fin_Year" Type="Self.Lkup_Fin_Year" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Lkup_Stock_Type">
+          <End Role="Lkup_Stock_Type" Type="Self.Lkup_Stock_Type" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Stock_Type">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="ISSUE_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="FROM_STOCK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Issue">
+          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+          <End Role="IssueDetails" Type="Self.IssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="ISSUE_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ISSUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IssueDetails" Type="Self.IssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Lkup_Item_Status">
+          <End Role="Lkup_Item_Status" Type="Self.Lkup_Item_Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IssueDetails" Type="Self.IssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Item_Status">
+              <PropertyRef Name="ITEM_STATUS_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Lkup_UOI">
+          <End Role="Lkup_UOI" Type="Self.Lkup_UOI" Multiplicity="1" />
+          <End Role="IssueDetails" Type="Self.IssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_UOI">
+              <PropertyRef Name="UOI_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM_UOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ITEM_CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Lkup_UOI">
+          <End Role="Lkup_UOI" Type="Self.Lkup_UOI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_UOI">
+              <PropertyRef Name="UOI_ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ITEM_UOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Fin_Year">
+          <End Role="Lkup_Fin_Year" Type="Self.Lkup_Fin_Year" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Payment_Type">
+          <End Role="Lkup_Payment_Type" Type="Self.Lkup_Payment_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Payment_Type">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PAYMENT_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Receipt_Type">
+          <End Role="Lkup_Receipt_Type" Type="Self.Lkup_Receipt_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Receipt_Type">
+              <PropertyRef Name="RECEIPT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="RECEIPT_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Suppliers">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SUPPLIER_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="SUPPLIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Lkup_Fin_Year">
+          <End Role="Lkup_Fin_Year" Type="Self.Lkup_Fin_Year" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Lkup_Payment_Reason">
+          <End Role="Lkup_Payment_Reason" Type="Self.Lkup_Payment_Reason" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Payment_Reason">
+              <PropertyRef Name="REASON_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PAYMENT_REASON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="STOCK_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Lkup_Stock_Type">
+          <End Role="Lkup_Stock_Type" Type="Self.Lkup_Stock_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Stock_Type">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="STOCK_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Lkup_Item_Status">
+          <End Role="Lkup_Item_Status" Type="Self.Lkup_Item_Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Item_Status">
+              <PropertyRef Name="ITEM_STATUS_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="ITEM_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="STOCK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Lkup_User_Roles">
+          <End Role="Lkup_User_Roles" Type="Self.Lkup_User_Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_User_Roles">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="USER_ROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IssueDetails" EntityType="Self.IssueDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Fin_Year" EntityType="Self.Lkup_Fin_Year" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Item_Status" EntityType="Self.Lkup_Item_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Payment_Reason" EntityType="Self.Lkup_Payment_Reason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Payment_Type" EntityType="Self.Lkup_Payment_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Receipt_Type" EntityType="Self.Lkup_Receipt_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_Stock_Type" EntityType="Self.Lkup_Stock_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_UOI" EntityType="Self.Lkup_UOI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lkup_User_Roles" EntityType="Self.Lkup_User_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockDetails" EntityType="Self.StockDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Issue_Employees" Association="Self.FK_Issue_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Lkup_Fin_Year" Association="Self.FK_Issue_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Lkup_Stock_Type" Association="Self.FK_Issue_Lkup_Stock_Type">
+            <End Role="Lkup_Stock_Type" EntitySet="Lkup_Stock_Type" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Stock" Association="Self.FK_Issue_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Issue" EntitySet="Issue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Issue" Association="Self.FK_IssueDetails_Issue">
+            <End Role="Issue" EntitySet="Issue" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Items" Association="Self.FK_IssueDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Lkup_Item_Status" Association="Self.FK_IssueDetails_Lkup_Item_Status">
+            <End Role="Lkup_Item_Status" EntitySet="Lkup_Item_Status" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Lkup_UOI" Association="Self.FK_IssueDetails_Lkup_UOI">
+            <End Role="Lkup_UOI" EntitySet="Lkup_UOI" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Category" Association="Self.FK_Items_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Lkup_UOI" Association="Self.FK_Items_Lkup_UOI">
+            <End Role="Lkup_UOI" EntitySet="Lkup_UOI" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Fin_Year" Association="Self.FK_Order_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Payment_Type" Association="Self.FK_Order_Lkup_Payment_Type">
+            <End Role="Lkup_Payment_Type" EntitySet="Lkup_Payment_Type" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Receipt_Type" Association="Self.FK_Order_Lkup_Receipt_Type">
+            <End Role="Lkup_Receipt_Type" EntitySet="Lkup_Receipt_Type" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Suppliers" Association="Self.FK_Order_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Items" Association="Self.FK_OrderDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Lkup_Fin_Year" Association="Self.FK_Payments_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Lkup_Payment_Reason" Association="Self.FK_Payments_Lkup_Payment_Reason">
+            <End Role="Lkup_Payment_Reason" EntitySet="Lkup_Payment_Reason" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Employees" Association="Self.FK_Stock_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Lkup_Stock_Type" Association="Self.FK_Stock_Lkup_Stock_Type">
+            <End Role="Lkup_Stock_Type" EntitySet="Lkup_Stock_Type" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Items" Association="Self.FK_StockDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Lkup_Item_Status" Association="Self.FK_StockDetails_Lkup_Item_Status">
+            <End Role="Lkup_Item_Status" EntitySet="Lkup_Item_Status" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Stock" Association="Self.FK_StockDetails_Stock">
+            <End Role="Stock" EntitySet="Stock" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Lkup_User_Roles" Association="Self.FK_Users_Lkup_User_Roles">
+            <End Role="Lkup_User_Roles" EntitySet="Lkup_User_Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Items_Category" FromRole="Category" ToRole="Items" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMPLOYEE_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WORK_PHONE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Employees" FromRole="Employees" ToRole="Issue" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Employees" FromRole="Employees" ToRole="Stock" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="ISSUE_ID" />
+          </Key>
+          <Property Name="ISSUE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISSUE_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REQ_EMPLOYEE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ISSUE_TYPE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FROM_STOCK" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Issue_Employees" FromRole="Issue" ToRole="Employees" />
+          <NavigationProperty Name="Lkup_Stock_Type" Relationship="Self.FK_Issue_Lkup_Stock_Type" FromRole="Issue" ToRole="Lkup_Stock_Type" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Issue_Stock" FromRole="Issue" ToRole="Stock" />
+          <NavigationProperty Name="IssueDetails" Relationship="Self.FK_IssueDetails_Issue" FromRole="Issue" ToRole="IssueDetails" />
+          <Property Name="FIN_YEAR" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Lkup_Fin_Year" Relationship="Model.FK_Issue_Lkup_Fin_Year" FromRole="Issue" ToRole="Lkup_Fin_Year" />
+        </EntityType>
+        <EntityType Name="IssueDetail">
+          <Key>
+            <PropertyRef Name="ISSUEDETAILS_ID" />
+          </Key>
+          <Property Name="ISSUEDETAILS_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISSUE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="REQUESTED_QTY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="APPROVED_QTY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISSUED_QTY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_STATUS" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_UOI" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Issue" Relationship="Self.FK_IssueDetails_Issue" FromRole="IssueDetails" ToRole="Issue" />
+          <NavigationProperty Name="Item1" Relationship="Self.FK_IssueDetails_Items" FromRole="IssueDetails" ToRole="Items" />
+          <NavigationProperty Name="Lkup_Item_Status" Relationship="Self.FK_IssueDetails_Lkup_Item_Status" FromRole="IssueDetails" ToRole="Lkup_Item_Status" />
+          <NavigationProperty Name="Lkup_UOI" Relationship="Self.FK_IssueDetails_Lkup_UOI" FromRole="IssueDetails" ToRole="Lkup_UOI" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ITEM_CATEGORY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_UOI" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_VENDOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ITEM_DESCRIPTON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Items_Category" FromRole="Items" ToRole="Category" />
+          <NavigationProperty Name="IssueDetails" Relationship="Self.FK_IssueDetails_Items" FromRole="Items" ToRole="IssueDetails" />
+          <NavigationProperty Name="Lkup_UOI" Relationship="Self.FK_Items_Lkup_UOI" FromRole="Items" ToRole="Lkup_UOI" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Items" FromRole="Items" ToRole="OrderDetails" />
+          <NavigationProperty Name="StockDetails" Relationship="Self.FK_StockDetails_Items" FromRole="Items" ToRole="StockDetails" />
+          <Property Name="ITEM_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Fin_Year">
+          <Key>
+            <PropertyRef Name="FIN_YEAR_ID" />
+          </Key>
+          <Property Name="FIN_YEAR_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIN_YEAR_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIN_YEAR_START" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FIN_YEAR_END" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FIN_YEAR_STATUS" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Issues" Relationship="Model.FK_Issue_Lkup_Fin_Year" FromRole="Lkup_Fin_Year" ToRole="Issue" />
+          <NavigationProperty Name="Orders" Relationship="Model.FK_Order_Lkup_Fin_Year" FromRole="Lkup_Fin_Year" ToRole="Order" />
+          <NavigationProperty Name="Payments" Relationship="Model.FK_Payments_Lkup_Fin_Year" FromRole="Lkup_Fin_Year" ToRole="Payment" />
+        </EntityType>
+        <EntityType Name="Lkup_Item_Status">
+          <Key>
+            <PropertyRef Name="ITEM_STATUS_ID" />
+          </Key>
+          <Property Name="ITEM_STATUS_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_STATUS_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IssueDetails" Relationship="Self.FK_IssueDetails_Lkup_Item_Status" FromRole="Lkup_Item_Status" ToRole="IssueDetails" />
+          <NavigationProperty Name="StockDetails" Relationship="Self.FK_StockDetails_Lkup_Item_Status" FromRole="Lkup_Item_Status" ToRole="StockDetails" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Payment_Reason">
+          <Key>
+            <PropertyRef Name="REASON_ID" />
+          </Key>
+          <Property Name="REASON_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REASON_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Lkup_Payment_Reason" FromRole="Lkup_Payment_Reason" ToRole="Payments" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Payment_Type">
+          <Key>
+            <PropertyRef Name="PAYMENT_TYPE_ID" />
+          </Key>
+          <Property Name="PAYMENT_TYPE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Lkup_Payment_Type" FromRole="Lkup_Payment_Type" ToRole="Order" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Receipt_Type">
+          <Key>
+            <PropertyRef Name="RECEIPT_TYPE_ID" />
+          </Key>
+          <Property Name="RECEIPT_TYPE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RECEIPT_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Lkup_Receipt_Type" FromRole="Lkup_Receipt_Type" ToRole="Order" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_Stock_Type">
+          <Key>
+            <PropertyRef Name="STOCK_TYPE_ID" />
+          </Key>
+          <Property Name="STOCK_TYPE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STOCK_TYPE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Lkup_Stock_Type" FromRole="Lkup_Stock_Type" ToRole="Issue" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Lkup_Stock_Type" FromRole="Lkup_Stock_Type" ToRole="Stock" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lkup_UOI">
+          <Key>
+            <PropertyRef Name="UOI_ID" />
+          </Key>
+          <Property Name="UOI_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UOI_NAME_AR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UOI_NAME_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IssueDetails" Relationship="Self.FK_IssueDetails_Lkup_UOI" FromRole="Lkup_UOI" ToRole="IssueDetails" />
+          <NavigationProperty Name="Items" Relationship="Self.FK_Items_Lkup_UOI" FromRole="Lkup_UOI" ToRole="Items" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Lkup_User_Roles">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Lkup_User_Roles" FromRole="Lkup_User_Roles" ToRole="Users" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ROLE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SUPPLIER" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_TYPE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ORDER_PERIOD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RECEIPT_TYPE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lkup_Payment_Type" Relationship="Self.FK_Order_Lkup_Payment_Type" FromRole="Order" ToRole="Lkup_Payment_Type" />
+          <NavigationProperty Name="Lkup_Receipt_Type" Relationship="Self.FK_Order_Lkup_Receipt_Type" FromRole="Order" ToRole="Lkup_Receipt_Type" />
+          <NavigationProperty Name="Supplier1" Relationship="Self.FK_Order_Suppliers" FromRole="Order" ToRole="Suppliers" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetails" />
+          <Property Name="FIN_YEAR" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Lkup_Fin_Year" Relationship="Model.FK_Order_Lkup_Fin_Year" FromRole="Order" ToRole="Lkup_Fin_Year" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="ORDERDETAIL_ID" />
+          </Key>
+          <Property Name="ORDERDETAIL_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="QUANTITY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item1" Relationship="Self.FK_OrderDetails_Items" FromRole="OrderDetails" ToRole="Items" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Order" FromRole="OrderDetails" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PAYMENT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_REASON" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PAYMENT_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PAYMENT_AMOUNT" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lkup_Payment_Reason" Relationship="Self.FK_Payments_Lkup_Payment_Reason" FromRole="Payments" ToRole="Lkup_Payment_Reason" />
+          <Property Name="FIN_YEAR" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Lkup_Fin_Year" Relationship="Model.FK_Payments_Lkup_Fin_Year" FromRole="Payment" ToRole="Lkup_Fin_Year" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="STOCK_ID" />
+          </Key>
+          <Property Name="STOCK_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STOCK_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STOCK_TYPE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STOCK_EMPLOYEE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="STOCK_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Stock_Employees" FromRole="Stock" ToRole="Employees" />
+          <NavigationProperty Name="Issues" Relationship="Self.FK_Issue_Stock" FromRole="Stock" ToRole="Issue" />
+          <NavigationProperty Name="Lkup_Stock_Type" Relationship="Self.FK_Stock_Lkup_Stock_Type" FromRole="Stock" ToRole="Lkup_Stock_Type" />
+          <NavigationProperty Name="StockDetails" Relationship="Self.FK_StockDetails_Stock" FromRole="Stock" ToRole="StockDetails" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StockDetail">
+          <Key>
+            <PropertyRef Name="STOCKDETAIL_ID" />
+          </Key>
+          <Property Name="STOCKDETAIL_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STOCK_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="QTY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ITEM_STATUS" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_BUY_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="UNIT_SELL_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_BUY_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_SELL_PRICE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item1" Relationship="Self.FK_StockDetails_Items" FromRole="StockDetails" ToRole="Items" />
+          <NavigationProperty Name="Lkup_Item_Status" Relationship="Self.FK_StockDetails_Lkup_Item_Status" FromRole="StockDetails" ToRole="Lkup_Item_Status" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_StockDetails_Stock" FromRole="StockDetails" ToRole="Stock" />
+          <Property Name="DOC_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SUPPLIER_ID" />
+          </Key>
+          <Property Name="SUPPLIER_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUPPLIER_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CONTACT_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CONTACT_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="POSTAL_CODE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FAX_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Suppliers" FromRole="Suppliers" ToRole="Order" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USER_ROLE" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PASSWORD_HINT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lkup_User_Roles" Relationship="Self.FK_Users_Lkup_User_Roles" FromRole="Users" ToRole="Lkup_User_Roles" />
+          <Property Name="ACTIVE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Items_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Items" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ITEM_CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="REQ_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="STOCK_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Lkup_Stock_Type">
+          <End Role="Lkup_Stock_Type" Type="Self.Lkup_Stock_Type" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Stock_Type">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="ISSUE_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Issue_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Issue" Type="Self.Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="FROM_STOCK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Issue">
+          <End Role="Issue" Type="Self.Issue" Multiplicity="1" />
+          <End Role="IssueDetails" Type="Self.IssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Issue">
+              <PropertyRef Name="ISSUE_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ISSUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Items">
+          <End Role="Items" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IssueDetails" Type="Self.IssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Lkup_Item_Status">
+          <End Role="Lkup_Item_Status" Type="Self.Lkup_Item_Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IssueDetails" Type="Self.IssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Item_Status">
+              <PropertyRef Name="ITEM_STATUS_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssueDetails_Lkup_UOI">
+          <End Role="Lkup_UOI" Type="Self.Lkup_UOI" Multiplicity="1" />
+          <End Role="IssueDetails" Type="Self.IssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_UOI">
+              <PropertyRef Name="UOI_ID" />
+            </Principal>
+            <Dependent Role="IssueDetails">
+              <PropertyRef Name="ITEM_UOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Lkup_UOI">
+          <End Role="Lkup_UOI" Type="Self.Lkup_UOI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Items" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_UOI">
+              <PropertyRef Name="UOI_ID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ITEM_UOI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Items">
+          <End Role="Items" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Items">
+          <End Role="Items" Type="Self.Item" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ITEM_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Lkup_Item_Status">
+          <End Role="Lkup_Item_Status" Type="Self.Lkup_Item_Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Item_Status">
+              <PropertyRef Name="ITEM_STATUS_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="ITEM_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Lkup_Payment_Reason">
+          <End Role="Lkup_Payment_Reason" Type="Self.Lkup_Payment_Reason" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Payment_Reason">
+              <PropertyRef Name="REASON_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PAYMENT_REASON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Payment_Type">
+          <End Role="Lkup_Payment_Type" Type="Self.Lkup_Payment_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Payment_Type">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PAYMENT_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Receipt_Type">
+          <End Role="Lkup_Receipt_Type" Type="Self.Lkup_Receipt_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Receipt_Type">
+              <PropertyRef Name="RECEIPT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="RECEIPT_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Lkup_Stock_Type">
+          <End Role="Lkup_Stock_Type" Type="Self.Lkup_Stock_Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Stock_Type">
+              <PropertyRef Name="STOCK_TYPE_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="STOCK_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Lkup_User_Roles">
+          <End Role="Lkup_User_Roles" Type="Self.Lkup_User_Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_User_Roles">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="USER_ROLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Suppliers">
+          <End Role="Suppliers" Type="Self.Supplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SUPPLIER_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="SUPPLIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDetails_Stock">
+          <End Role="Stock" Type="Self.Stock" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StockDetails" Type="Self.StockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stock">
+              <PropertyRef Name="STOCK_ID" />
+            </Principal>
+            <Dependent Role="StockDetails">
+              <PropertyRef Name="STOCK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Inventory_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Issues" EntityType="Self.Issue" />
+          <EntitySet Name="IssueDetails" EntityType="Self.IssueDetail" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Lkup_Fin_Year" EntityType="Self.Lkup_Fin_Year" />
+          <EntitySet Name="Lkup_Item_Status" EntityType="Self.Lkup_Item_Status" />
+          <EntitySet Name="Lkup_Payment_Reason" EntityType="Self.Lkup_Payment_Reason" />
+          <EntitySet Name="Lkup_Payment_Type" EntityType="Self.Lkup_Payment_Type" />
+          <EntitySet Name="Lkup_Receipt_Type" EntityType="Self.Lkup_Receipt_Type" />
+          <EntitySet Name="Lkup_Stock_Type" EntityType="Self.Lkup_Stock_Type" />
+          <EntitySet Name="Lkup_UOI" EntityType="Self.Lkup_UOI" />
+          <EntitySet Name="Lkup_User_Roles" EntityType="Self.Lkup_User_Roles" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="StockDetails" EntityType="Self.StockDetail" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Items_Category" Association="Self.FK_Items_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Employees" Association="Self.FK_Issue_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Employees" Association="Self.FK_Stock_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Lkup_Stock_Type" Association="Self.FK_Issue_Lkup_Stock_Type">
+            <End Role="Lkup_Stock_Type" EntitySet="Lkup_Stock_Type" />
+            <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Stock" Association="Self.FK_Issue_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Issue" Association="Self.FK_IssueDetails_Issue">
+            <End Role="Issue" EntitySet="Issues" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Items" Association="Self.FK_IssueDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Lkup_Item_Status" Association="Self.FK_IssueDetails_Lkup_Item_Status">
+            <End Role="Lkup_Item_Status" EntitySet="Lkup_Item_Status" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssueDetails_Lkup_UOI" Association="Self.FK_IssueDetails_Lkup_UOI">
+            <End Role="Lkup_UOI" EntitySet="Lkup_UOI" />
+            <End Role="IssueDetails" EntitySet="IssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Lkup_UOI" Association="Self.FK_Items_Lkup_UOI">
+            <End Role="Lkup_UOI" EntitySet="Lkup_UOI" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Items" Association="Self.FK_OrderDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Items" Association="Self.FK_StockDetails_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Lkup_Item_Status" Association="Self.FK_StockDetails_Lkup_Item_Status">
+            <End Role="Lkup_Item_Status" EntitySet="Lkup_Item_Status" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Lkup_Payment_Reason" Association="Self.FK_Payments_Lkup_Payment_Reason">
+            <End Role="Lkup_Payment_Reason" EntitySet="Lkup_Payment_Reason" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Payment_Type" Association="Self.FK_Order_Lkup_Payment_Type">
+            <End Role="Lkup_Payment_Type" EntitySet="Lkup_Payment_Type" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Receipt_Type" Association="Self.FK_Order_Lkup_Receipt_Type">
+            <End Role="Lkup_Receipt_Type" EntitySet="Lkup_Receipt_Type" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Lkup_Stock_Type" Association="Self.FK_Stock_Lkup_Stock_Type">
+            <End Role="Lkup_Stock_Type" EntitySet="Lkup_Stock_Type" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Lkup_User_Roles" Association="Self.FK_Users_Lkup_User_Roles">
+            <End Role="Lkup_User_Roles" EntitySet="Lkup_User_Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Suppliers" Association="Self.FK_Order_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDetails_Stock" Association="Self.FK_StockDetails_Stock">
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="StockDetails" EntitySet="StockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Issue_Lkup_Fin_Year" Association="Model.FK_Issue_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Issue" EntitySet="Issues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Lkup_Fin_Year" Association="Model.FK_Order_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Lkup_Fin_Year" Association="Model.FK_Payments_Lkup_Fin_Year">
+            <End Role="Lkup_Fin_Year" EntitySet="Lkup_Fin_Year" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Issue_Lkup_Fin_Year">
+          <End Type="Model.Lkup_Fin_Year" Role="Lkup_Fin_Year" Multiplicity="1" />
+          <End Type="Model.Issue" Role="Issue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Issue">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Lkup_Fin_Year">
+          <End Type="Model.Lkup_Fin_Year" Role="Lkup_Fin_Year" Multiplicity="1" />
+          <End Type="Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Lkup_Fin_Year">
+          <End Type="Model.Lkup_Fin_Year" Role="Lkup_Fin_Year" Multiplicity="1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lkup_Fin_Year">
+              <PropertyRef Name="FIN_YEAR_ID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="FIN_YEAR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Inventory_SystemEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="EMPLOYEE_NAME" ColumnName="EMPLOYEE_NAME" />
+                <ScalarProperty Name="EMPLOYEE_TITLE" ColumnName="EMPLOYEE_TITLE" />
+                <ScalarProperty Name="WORK_PHONE" ColumnName="WORK_PHONE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Issues">
+            <EntityTypeMapping TypeName="Model.Issue">
+              <MappingFragment StoreEntitySet="Issue">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="FIN_YEAR" ColumnName="FIN_YEAR" />
+                <ScalarProperty Name="ISSUE_ID" ColumnName="ISSUE_ID" />
+                <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+                <ScalarProperty Name="REQ_EMPLOYEE" ColumnName="REQ_EMPLOYEE" />
+                <ScalarProperty Name="ISSUE_TYPE" ColumnName="ISSUE_TYPE" />
+                <ScalarProperty Name="FROM_STOCK" ColumnName="FROM_STOCK" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IssueDetails">
+            <EntityTypeMapping TypeName="Model.IssueDetail">
+              <MappingFragment StoreEntitySet="IssueDetails">
+                <ScalarProperty Name="ISSUEDETAILS_ID" ColumnName="ISSUEDETAILS_ID" />
+                <ScalarProperty Name="ISSUE_ID" ColumnName="ISSUE_ID" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="REQUESTED_QTY" ColumnName="REQUESTED_QTY" />
+                <ScalarProperty Name="APPROVED_QTY" ColumnName="APPROVED_QTY" />
+                <ScalarProperty Name="ISSUED_QTY" ColumnName="ISSUED_QTY" />
+                <ScalarProperty Name="ITEM_STATUS" ColumnName="ITEM_STATUS" />
+                <ScalarProperty Name="ITEM_UOI" ColumnName="ITEM_UOI" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="Model.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="ITEM_CODE" ColumnName="ITEM_CODE" />
+                <ScalarProperty Name="ITEM_CATEGORY" ColumnName="ITEM_CATEGORY" />
+                <ScalarProperty Name="ITEM_UOI" ColumnName="ITEM_UOI" />
+                <ScalarProperty Name="ITEM_VENDOR" ColumnName="ITEM_VENDOR" />
+                <ScalarProperty Name="ITEM_DESCRIPTON" ColumnName="ITEM_DESCRIPTON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Fin_Year">
+            <EntityTypeMapping TypeName="Model.Lkup_Fin_Year">
+              <MappingFragment StoreEntitySet="Lkup_Fin_Year">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="FIN_YEAR_ID" ColumnName="FIN_YEAR_ID" />
+                <ScalarProperty Name="FIN_YEAR_NAME" ColumnName="FIN_YEAR_NAME" />
+                <ScalarProperty Name="FIN_YEAR_START" ColumnName="FIN_YEAR_START" />
+                <ScalarProperty Name="FIN_YEAR_END" ColumnName="FIN_YEAR_END" />
+                <ScalarProperty Name="FIN_YEAR_STATUS" ColumnName="FIN_YEAR_STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Item_Status">
+            <EntityTypeMapping TypeName="Model.Lkup_Item_Status">
+              <MappingFragment StoreEntitySet="Lkup_Item_Status">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="ITEM_STATUS_ID" ColumnName="ITEM_STATUS_ID" />
+                <ScalarProperty Name="ITEM_STATUS_NAME" ColumnName="ITEM_STATUS_NAME" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Payment_Reason">
+            <EntityTypeMapping TypeName="Model.Lkup_Payment_Reason">
+              <MappingFragment StoreEntitySet="Lkup_Payment_Reason">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="REASON_ID" ColumnName="REASON_ID" />
+                <ScalarProperty Name="REASON_NAME" ColumnName="REASON_NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Payment_Type">
+            <EntityTypeMapping TypeName="Model.Lkup_Payment_Type">
+              <MappingFragment StoreEntitySet="Lkup_Payment_Type">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+                <ScalarProperty Name="PAYMENT_TYPE_NAME" ColumnName="PAYMENT_TYPE_NAME" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Receipt_Type">
+            <EntityTypeMapping TypeName="Model.Lkup_Receipt_Type">
+              <MappingFragment StoreEntitySet="Lkup_Receipt_Type">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="RECEIPT_TYPE_ID" ColumnName="RECEIPT_TYPE_ID" />
+                <ScalarProperty Name="RECEIPT_TYPE_NAME" ColumnName="RECEIPT_TYPE_NAME" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_Stock_Type">
+            <EntityTypeMapping TypeName="Model.Lkup_Stock_Type">
+              <MappingFragment StoreEntitySet="Lkup_Stock_Type">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="STOCK_TYPE_ID" ColumnName="STOCK_TYPE_ID" />
+                <ScalarProperty Name="STOCK_TYPE_NAME" ColumnName="STOCK_TYPE_NAME" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_UOI">
+            <EntityTypeMapping TypeName="Model.Lkup_UOI">
+              <MappingFragment StoreEntitySet="Lkup_UOI">
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="UOI_ID" ColumnName="UOI_ID" />
+                <ScalarProperty Name="UOI_NAME_AR" ColumnName="UOI_NAME_AR" />
+                <ScalarProperty Name="UOI_NAME_EN" ColumnName="UOI_NAME_EN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lkup_User_Roles">
+            <EntityTypeMapping TypeName="Model.Lkup_User_Roles">
+              <MappingFragment StoreEntitySet="Lkup_User_Roles">
+                <ScalarProperty Name="ROLE_DESCRIPTION" ColumnName="ROLE_DESCRIPTION" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="FIN_YEAR" ColumnName="FIN_YEAR" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ORDER_DATE" ColumnName="ORDER_DATE" />
+                <ScalarProperty Name="SUPPLIER" ColumnName="SUPPLIER" />
+                <ScalarProperty Name="PAYMENT_TYPE" ColumnName="PAYMENT_TYPE" />
+                <ScalarProperty Name="ORDER_PERIOD" ColumnName="ORDER_PERIOD" />
+                <ScalarProperty Name="RECEIPT_TYPE" ColumnName="RECEIPT_TYPE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="Model.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="ORDERDETAIL_ID" ColumnName="ORDERDETAIL_ID" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="Model.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="FIN_YEAR" ColumnName="FIN_YEAR" />
+                <ScalarProperty Name="PAYMENT_ID" ColumnName="PAYMENT_ID" />
+                <ScalarProperty Name="PAYMENT_REASON" ColumnName="PAYMENT_REASON" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="PAYMENT_AMOUNT" ColumnName="PAYMENT_AMOUNT" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="Model.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="STOCK_ID" ColumnName="STOCK_ID" />
+                <ScalarProperty Name="STOCK_CODE" ColumnName="STOCK_CODE" />
+                <ScalarProperty Name="STOCK_TYPE" ColumnName="STOCK_TYPE" />
+                <ScalarProperty Name="STOCK_EMPLOYEE" ColumnName="STOCK_EMPLOYEE" />
+                <ScalarProperty Name="STOCK_DESCRIPTION" ColumnName="STOCK_DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockDetails">
+            <EntityTypeMapping TypeName="Model.StockDetail">
+              <MappingFragment StoreEntitySet="StockDetails">
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="STOCKDETAIL_ID" ColumnName="STOCKDETAIL_ID" />
+                <ScalarProperty Name="STOCK_ID" ColumnName="STOCK_ID" />
+                <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="ITEM_STATUS" ColumnName="ITEM_STATUS" />
+                <ScalarProperty Name="UNIT_BUY_PRICE" ColumnName="UNIT_BUY_PRICE" />
+                <ScalarProperty Name="UNIT_SELL_PRICE" ColumnName="UNIT_SELL_PRICE" />
+                <ScalarProperty Name="TOTAL_BUY_PRICE" ColumnName="TOTAL_BUY_PRICE" />
+                <ScalarProperty Name="TOTAL_SELL_PRICE" ColumnName="TOTAL_SELL_PRICE" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="Model.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="SUPPLIER_ID" ColumnName="SUPPLIER_ID" />
+                <ScalarProperty Name="SUPPLIER_NAME" ColumnName="SUPPLIER_NAME" />
+                <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+                <ScalarProperty Name="CONTACT_TITLE" ColumnName="CONTACT_TITLE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="POSTAL_CODE" ColumnName="POSTAL_CODE" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+                <ScalarProperty Name="FAX_NUMBER" ColumnName="FAX_NUMBER" />
+                <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+                <ScalarProperty Name="PASSWORD_HINT" ColumnName="PASSWORD_HINT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

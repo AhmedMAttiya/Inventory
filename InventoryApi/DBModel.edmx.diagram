@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a71b0ba950a0428b9e0eee291b4ee080" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="1.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Issue" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.IssueDetail" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Item" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Fin_Year" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Item_Status" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Payment_Reason" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Payment_Type" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Receipt_Type" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_Stock_Type" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_UOI" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lkup_User_Roles" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderDetail" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="13" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Stock" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StockDetail" Width="1.5" PointX="11.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Supplier" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Items_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Issue_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stock_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Issue_Lkup_Stock_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Issue_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_IssueDetails_Issue" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_IssueDetails_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_IssueDetails_Lkup_Item_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_IssueDetails_Lkup_UOI" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Items_Lkup_UOI" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetails_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_StockDetails_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_StockDetails_Lkup_Item_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Payments_Lkup_Payment_Reason" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Lkup_Payment_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Lkup_Receipt_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Stock_Lkup_Stock_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Users_Lkup_User_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetails_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_StockDetails_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Issue_Lkup_Fin_Year" />
+        <AssociationConnector Association="Model.FK_Order_Lkup_Fin_Year" />
+        <AssociationConnector Association="Model.FK_Payments_Lkup_Fin_Year" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
